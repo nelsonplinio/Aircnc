@@ -1,12 +1,36 @@
-import React, { useState, useEffect } from "react";
-import { FlatList, AsyncStorage, Image, StyleSheet, Link } from "react-native";
-
-import SpotList from "../components/SpotList";
-import logo from "../assets/logo.png";
-import { SafeAreaView } from "react-navigation";
+import React, { useEffect, useState } from "react";
+import { AsyncStorage, FlatList, Image, StyleSheet, Alert } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { SafeAreaView } from "react-navigation";
+import socketio from "socket.io-client";
+
+import logo from "../assets/logo.png";
+import SpotList from "../components/SpotList";
+import env from '../../env';
+
 const List = ({ navigation }) => {
   const [techs, setTechs] = useState([]);
+
+  useEffect(() => {
+
+    AsyncStorage.getItem("user").then(user_id => {
+      
+    });
+
+    AsyncStorage.getItem("user").then(user_id => {
+      const socket = socketio(env.baseUrl, {
+        query: {
+          user_id
+        }
+      });
+
+      socket.on("booking_response", booking => {
+        Alert.alert(
+          `Sua reserva em ${booking.spot.company} em ${booking.date} foi ${booking.approved ? 'Aprovada' : 'Rejeitada'}.`
+        );
+      });
+    });
+  }, []);
 
   useEffect(() => {
     AsyncStorage.getItem("techs").then(storagedTechs => {

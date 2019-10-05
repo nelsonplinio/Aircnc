@@ -17,7 +17,6 @@ ul.spot-list li header {
   height: 120px;
   background-size: cover;
   border-radius: 4px;
-
 }
 
 ul.spot-list li strong {
@@ -29,4 +28,38 @@ ul.spot-list li strong {
 ul.spot-list li span {
   font-size: 15px;
   color: #999;
+}
+
+ul.notifications {
+  list-style: none;
+  margin-bottom: 15px;
+}
+
+ul.notifications li {
+  font-size: 16px;
+  line-height: 24px;
+  border: solid #ddd 1px;
+  border-radius: 4px;
+  padding: 4px;
+  margin-bottom: 6px
+}
+
+ul.notifications li button {
+  margin-right: 10px;
+  border: 0;
+  font-weight: bold;
+  margin-top: 10px;
+  height: 30px;
+  font-size: 16px;
+  background: transparent;
+}
+
+ul.notifications li button.accept {
+  color: #84c870;
+  cursor: pointer;
+}
+
+ul.notifications li button.reject {
+  color: #e55e5e;
+  cursor: pointer;
 }

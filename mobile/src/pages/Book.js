@@ -13,14 +13,15 @@ import api from "../services/api";
 
 
 const Book = ({ navigation }) => {
-  console.log(navigation);
+  
   const { _id } = navigation.getParam("spot");
   const [date, setDate] = useState("");
   const [user, setUser] = useState("");
 
   useEffect(() => {
-    AsyncStorage.getItem("user").then(user => {
-      setUser(user);
+    AsyncStorage.getItem("user").then(user_id => {
+      setUser(user_id);
+      console.log(user_id);
     });
   }, []);
 
@@ -32,7 +33,7 @@ const Book = ({ navigation }) => {
       },
       {
         headers: {
-          user
+          user_id: user,
         }
       }
     );
